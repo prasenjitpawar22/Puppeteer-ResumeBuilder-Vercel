@@ -42,7 +42,7 @@ app.get("/api", async (req, res) => {
     res.setHeader('Content-Type', 'application/pdf');
 
     console.log(pdf);
-    return res.send('ok')
+    return pdf;
 
 
   } catch (err) {
