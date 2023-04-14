@@ -30,7 +30,7 @@ app.get("/api", async (req, res) => {
     // await page.goto("https://www.google.com");
     // res.send(await page.title());
 
-    let website_url = `https://backend-be.vercel.app/build/download/${req.body.userId}`;
+    let website_url = `https://backend-be.vercel.app/build/download`;
 
     // Open URL in current page
     await page.goto(website_url, { waitUntil: 'networkidle0' });
@@ -45,7 +45,7 @@ app.get("/api", async (req, res) => {
     res.setHeader('Content-Type', 'application/pdf');
 
     console.log(pdf);
-    return res.send(pdf)
+    return res.send('ok')
 
 
   } catch (err) {
