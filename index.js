@@ -35,10 +35,7 @@ app.get("/api", async (req, res) => {
     // Open URL in current page
     await page.goto(website_url, { waitUntil: 'networkidle0' });
     await page.emulateMediaType('screen');
-    const pdf = await page.pdf({
-      path: 'result.pdf',
-      format: 'a4',
-    });
+    const pdf = await page.pdf({ format: 'a4' });
     await browser.close();
 
     // const pdf = await downloadPdf(req.body.userId)
