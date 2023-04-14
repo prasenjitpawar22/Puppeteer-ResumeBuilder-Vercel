@@ -30,7 +30,7 @@ app.get("/api", async (req, res) => {
     // await page.goto("https://www.google.com");
     // res.send(await page.title());
 
-    let website_url = `https://backend-be.vercel.app/build/download`;
+    let website_url = `${process.env.MAIN_API}`;
 
     // Open URL in current page
     await page.goto(website_url, { waitUntil: 'networkidle0' });
