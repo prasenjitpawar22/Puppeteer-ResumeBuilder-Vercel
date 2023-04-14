@@ -27,8 +27,27 @@ app.get("/api", async (req, res) => {
     let browser = await puppeteer.launch(options);
 
     let page = await browser.newPage();
-    await page.goto("https://www.google.com");
-    res.send(await page.title());
+    // await page.goto("https://www.google.com");
+    // res.send(await page.title());
+
+    let website_url = `https://backend-be.vercel.app/build/download/${req.body.userId}`;
+
+    // Open URL in current page
+    await page.goto(website_url, { waitUntil: 'networkidle0' });
+    await page.emulateMediaType('screen');
+    const pdf = await page.pdf({
+      path: 'result.pdf',
+      format: 'a4',
+    });
+    await browser.close();
+
+    // const pdf = await downloadPdf(req.body.userId)
+    res.setHeader('Content-Type', 'application/pdf');
+
+    console.log(pdf);
+    return res.send(pdf)
+
+
   } catch (err) {
     console.error(err);
     return null;
